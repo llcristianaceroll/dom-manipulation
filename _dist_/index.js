@@ -8,6 +8,12 @@ const baseUrl = "https://platzi-avo.vercel.app"
 
 const appNode = document.querySelector('#app')
 
+appNode.addEventListener ('click', (event) => {
+    if(event.target.nodeName === 'H2') {
+        alert('Hola soy un avocado')
+    }
+}) // de esta manera no creamos varios eventos dentro del forEach y se usa cuando el numer de addEventListener es muy grande--> buenas prácticas
+
 const formatPrice = (price) => {
     const newPrice = new window.Intl.NumberFormat('en-EN', {
         style: "currency",
@@ -33,8 +39,13 @@ window.fetch(`${baseUrl}/api/avo`)
     title.textContent = item.name;
     // title.style = 'font-size: 2rem';
     // title.style.fontSize = '2rem'
+
     title.className = 'text-lg' // tailwind classes
-    
+
+    // title.addEventListener('click', (event) => {
+    //     alert('Hola soy un avocado')
+    // }) //estamos creando muchos eventos por consiguinte no se deberia hacer esto 
+
     const price = document.createElement('div');
     price.textContent = formatPrice(item.price);
     price.className = 'text-gray-600'
